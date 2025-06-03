@@ -1,5 +1,9 @@
 # AIvolution
  
+ ## Autores
+
+ - Jorge Carlos Garcia Morales
+ - Lidier Robaina Caraballo
 
 ## Descripción General
 Un sistema de simulación que estudia la interacción entre evolución genética y cultural en un ecosistema artificial. Combina:
@@ -22,7 +26,7 @@ Los organismos (depredadores y presas) implementan un modelo **Creencias-Deseos-
 
 **Mecánica clave**:
 - Los agentes actualizan sus creencias mediante sensores virtuales
-- El sistema difuso traduce deseos en intenciones usando reglas lingüísticas
+- El sistema difuso traduce deseos en intenciones usando reglas lógicas
 - Las acciones modifican el entorno y desencadenan nuevas percepciones
 
 ### 2. Entorno Dinámico

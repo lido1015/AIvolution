@@ -1,0 +1,290 @@
+\documentclass[letterpaper, 12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{enumitem}
+
+
+% Paradoja de pooling
+
+\hyphenpenalty=10000 % Penaliza fuertemente la división de palabras
+\exhyphenpenalty=10000 % Penaliza división después de guiones existentes
+\tolerance=1 % Reduce la "urgencia" de dividir palabras
+\emergencystretch=\maxdimen % Evita overfull boxes sin dividir palabras
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+
+\setlength{\headheight}{24.01996pt}
+\addtolength{\topmargin}{-12.01996pt}
+
+% Definir colores personalizados
+\definecolor{primary}{RGB}{25,55,95}
+\definecolor{secondary}{RGB}{200,35,45}
+
+% Configurar márgenes
+\geometry{
+    left=3cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=2.5cm
+}
+
+\newtheorem*{theorem*}{Teorema}
+
+% Configurar estilo de títulos
+\titleformat{\chapter}[display]
+{\normalfont\Huge\bfseries\color{primary}}
+{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{primary}}
+{\thesection}{1em}{}
+
+% Configurar encabezado y pie de página
+\pagestyle{fancy}
+\fancyhf{}\hyphenpenalty=10000 % Penaliza fuertemente la división de palabras
+\exhyphenpenalty=10000 % Penaliza división después de guiones existentes
+\tolerance=1 % Reduce la "urgencia" de dividir palabras
+\emergencystretch=\maxdimen % Evita overfull boxes sin dividir palabras
+\fancyhead[L]{\small\textcolor{primary}{\nouppercase{\leftmark}}}
+\fancyfoot[C]{\textcolor{primary}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{primary}\leaders\hrule height \headrulewidth\hfill}}
+
+% Portada personalizada
+\newcommand*{\customtitlepage}{
+    \begin{titlepage}
+        \begin{center}
+            \vspace*{1cm}
+            
+            
+            {\LARGE \textbf{UNIVERSIDAD DE LA HABANA}}\\
+            \vspace{0.5cm}
+            {\Large Facultad de Matem\'atica y Computaci\'on}\\
+            
+
+            \includegraphics[scale=0.5]{images/logo.png}
+            
+            \vspace{1cm}
+            
+            
+            \rule{\textwidth}{1.5pt}\\
+            \vspace{0.5cm}
+            {\LARGE \textcolor{primary}{\textbf{Proyecto Final de Simulación \\ \vspace{0.3cm} e Inteligencia Artificial}}}
+            \vspace{0.5cm}
+            \rule{\textwidth}{1.5pt}
+            
+            \vspace{2cm}
+            
+            {\Large \textbf{Selección Natural vs Algoritmos Evolutivos}}\\
+            \vspace{1cm}
+            
+            {\Large \textbf{Autor:} Lidier Robaina Caraballo \\
+            \vspace{0.5cm}
+            {\Large \textbf{Grupo:} C-411 }\\
+            \vspace{1.5cm}
+            
+            {\Large junio de 2025
+            }
+            }
+        \end{center}
+    \end{titlepage}
+}
+
+\begin{document}
+
+\customtitlepage
+
+% Índice
+\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+
+% Contenido principal
+\setcounter{page}{1}
+
+\chapter{Introducción}
+
+
+La simulación computacional de sistemas ecológicos constituye una herramienta fundamental para explorar dinámicas evolutivas que, en entornos reales, requerirían escalas temporales inabarcables o intervenciones éticamente inviables. Este proyecto integra los paradigmas de Inteligencia Artificial (IA) y Simulación para estudiar un fenómeno central en biología teórica: la optimización adaptativa de especies mediante selección natural versus estrategias algorítmicas evolutivas. Inspirado en modelos clásicos depredador-presa, como el de Lotka-Volterra (1925), pero trascendiéndolos mediante agentes autónomos con capacidad de decisión, el trabajo aborda la comparación empírica entre mecanismos evolutivos naturales y metaheurísticas computacionales en entornos dinámicos complejos.
+
+\section{Objetivos}
+
+Este trabajo busca:
+
+\begin{itemize}
+
+
+\item[1.] Simular un ecosistema artificial con dos especies interactuantes (depredadores y presas) donde cada agente implementa:
+
+\begin{itemize}
+
+\item[•] Una arquitectura BDI (creencias-deseos-intenciones) para autonomía cognitiva.
+
+\item[•] Un sistema experto difuso para decisiones adaptativas en entornos inciertos.
+        
+\end{itemize}
+
+\item[2.]    Comparar dos enfoques evolutivos:
+
+\begin{itemize}
+
+
+   \item[•]     Selección natural: Mutaciones aleatorias intra-simulación y selección basada en desempeño.
+
+     \item[•]   Algoritmos evolutivos: Optimización poblacional inter-simulaciones con genotipos inmutables.
+
+\end{itemize}
+
+\item[3.] Evaluar métricas críticas como velocidad de adaptación y estabilidad poblacional. 
+        
+\end{itemize}
+
+
+\chapter{Marco Teórico}
+
+\section{Teoría de la Evolución}
+
+La teoría de la evolución por selección natural, formulada por Charles Darwin en su obra fundacional \textit{El origen de las especies} \cite{darwin2004origin}, constituye uno de los pilares de la biología moderna. Postula que los organismos con rasgos heredables que mejoran su adaptación al medio ambiente tienen mayores probabilidades de sobrevivir, reproducirse y transmitir dichas características a su descendencia. Con el tiempo, este proceso conduce a cambios acumulativos en las poblaciones, donde las variaciones ventajosas se preservan mientras que las desfavorables se extinguen progresivamente. \\
+
+El mecanismo evolutivo opera mediante tres componentes esenciales:
+
+\begin{itemize}
+\item[1.] \textbf{Variación genética:} Existencia de diferencias heredables en rasgos fisiológicos o conductuales entre individuos.
+\item[2.] \textbf{Presión selectiva:} Factores ambientales (disponibilidad de recursos, depredación, clima) que favorecen o perjudican ciertas variantes.
+\item[3.] \textbf{Herencia:} Transmisión de características adaptativas a nuevas generaciones.
+\end{itemize}
+
+La selección natural no sigue un plan predeterminado ni optimiza hacia un fin específico; su ``dirección'' emerge de interacciones dinámicas entre organismos y ambiente, donde el éxito reproductivo es la única medida de aptitud \cite{gould2002structure}. Esta naturaleza contrasta con los enfoques algorítmicos que persiguen soluciones óptimas definidas matemáticamente.
+
+
+
+
+\section{Algoritmos Evolutivos}
+
+
+Los algoritmos evolutivos pertenecen a la familia de las metaheurísticas poblacionales, técnicas de optimización estocástica inspiradas en procesos naturales. A diferencia de métodos clásicos que exploran soluciones individualmente, estos algoritmos mantienen una población de candidatos que evoluciona colectivamente mediante operadores inspirados en la genética biológica. \\
+
+El proceso general sigue un ciclo iterativo:
+\begin{itemize}
+\item[1.] \textbf{Inicialización:} Generar población aleatoria de soluciones.  
+\item[2.] \textbf{Evaluación:} Calcular aptitud (fitness) de cada individuo.  
+\item[3.] \textbf{Selección:} Escoger padres según su desempeño.  
+\item[4.] \textbf{Variación:} Aplicar cruce (recombinación) y mutación.
+\item[5.] \textbf{Reemplazo:} Formar nueva generación.
+\end{itemize}
+
+Estos métodos contrastan con la evolución natural por su dependencia de una función de aptitud explícita, que guía la búsqueda hacia objetivos predefinidos. Además, permiten controlar parámetros como tasas de mutación y esquemas de selección, facilitando la exploración sistemática del espacio de soluciones. \\
+
+
+Entre las principales variantes destacan:
+
+\begin{itemize}
+\item[•] Algoritmos Genéticos: Una de las metaheurísticas más conocidas y utilizadas. Priorizan operadores de recombinación representando soluciones como cadenas binarias.
+\item[•] Estrategias de Evolución: Enfocadas en optimización continua, con mutación adaptativa y sin recombinación.
+\item[•] Evolución Diferencial: Cada solución de la población es tratada como un vector de $\mathbb{R}^n$ y la interpretación de las operaciones es totalmente geométrica. Las nuevas soluciones se mueven en la dirección del gradiente
+de la función objetivo.
+
+\end{itemize}
+
+
+\section{Dinámicas Depredador-Presa}
+
+Las interacciones depredador-presa constituyen un eje central en ecología teórica. El modelo clásico de Lotka-Volterra (1925-1926) describe estas dinámicas mediante ecuaciones diferenciales que predicen oscilaciones cíclicas en poblaciones:
+
+\begin{itemize}
+\item[•] Fase 1: Aumento de presas por abundancia de recursos.
+\item[•] Fase 2: Crecimiento de depredadores al disponer de más alimento.
+\item[•] Fase 3: Declive de presas por presión predatoria.
+\item[•] Fase 4: Reducción de depredadores por escasez de presas.    
+\end{itemize}
+
+En simulaciones computacionales, este marco se puede extender incorporando:
+\begin{itemize}
+\item[•] Heterogeneidad individual: Agentes con genotipos únicos que afectan su desempeño.
+\item[•] Comportamientos adaptativos: Toma de decisiones basada en percepción del entorno.
+\item[•] Restricciones espaciales: Movimiento en territorios con recursos limitados.
+\end{itemize}
+
+Estas extensiones permiten estudiar fenómenos emergentes como la coevolución de rasgos (ej: velocidad en presas vs. sigilo en depredadores) o estrategias colectivas \cite{deangelis2005individual}.
+
+
+
+
+\section{Simulación Multiagente y Arquitectura BDI}
+
+Los sistemas multiagente permiten simular fenómenos complejos mediante la interacción de entidades autónomas (agentes) en un entorno compartido. Cada agente toma decisiones basadas en reglas locales, generando comportamientos globales emergentes que reflejan dinámicas ecológicas o sociales. \\
+
+En este proyecto, los agentes depredador y presa implementan la arquitectura BDI (Creencias-Deseos-Intenciones), un modelo cognitivo que emula procesos de razonamiento humano:
+\begin{itemize}
+
+\item[•] \textbf{Creencias (Beliefs):} Representan el conocimiento del agente sobre su estado interno y entorno (ej: ``Tengo 40\% de energía'', ``Hay un depredador a 5 metros'').
+
+\item[•] \textbf{Deseos (Desires):} Corresponden a objetivos prioritarios como alimentarse, reproducirse o huir.
+
+\item[•] \textbf{Intenciones (Intentions):} Acciones concretas seleccionadas para alcanzar los objetivos (ej: perseguir presa, buscar refugio). \\
+    
+\end{itemize}
+
+El ciclo de decisión BDI opera en tres fases:
+
+\begin{itemize}
+ \item[1.]   Percepción: Actualizar creencias según estímulos del entorno.
+
+  \item[2.]  Deliberación: Evaluar deseos compatibles con las creencias.
+
+  \item[3.]  Planificación: Seleccionar y ejecutar intenciones.
+\end{itemize}
+
+
+Esta estructura permite agentes adaptativos cuyas decisiones varían dinámicamente según contexto, simulando comportamientos realistas como cambios de estrategia ante amenazas o escasez de recursos \cite{rao1995bdi}.
+
+\section{Sistemas Expertos basados en Lógica Difusa}
+
+Los sistemas difusos manejan incertidumbre y vaguedad mediante lógica multivaluada, donde la pertenencia a categorías no es binaria (verdadero/falso) sino gradual. Esto los hace ideales para modelar procesos de decisión con información imprecisa, como los que enfrentan los agentes en entornos dinámicos. \\
+
+Un sistema experto difuso consta de tres módulos interconectados:
+
+\begin{itemize}
+
+\item[•] Fusificador: Convierte entradas numéricas en grados de pertenencia a conjuntos difusos.
+
+\item[•] Motor de Inferencia: Aplica reglas heurísticas usando operadores difusos:
+
+\item[•] Defusificador: Transforma resultados difusos en valores numéricos ejecutables, típicamente usando métodos como el centroide.
+    
+\end{itemize}
+
+Esta aproximación captura la naturaleza cualitativa del razonamiento biológico, permitiendo decisiones sin umbrales rígidos.
+
+\chapter{Diseño e Implementación}
+
+\chapter{Resultados y Experimentos}
+
+\chapter{Análisis}
+
+
+\chapter{Conclusiones}
+
+
+\bibliographystyle{unsrt}
+\bibliography{biblio} 
+
+\end{document}

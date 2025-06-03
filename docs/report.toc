@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Introducción}{1}{}%
+\contentsline {section}{\numberline {1.1}Objetivos}{1}{}%
+\contentsline {chapter}{\numberline {2}Marco Teórico}{2}{}%
+\contentsline {section}{\numberline {2.1}Teoría de la Evolución}{2}{}%
+\contentsline {section}{\numberline {2.2}Algoritmos Evolutivos}{2}{}%
+\contentsline {section}{\numberline {2.3}Dinámicas Depredador-Presa}{3}{}%
+\contentsline {section}{\numberline {2.4}Simulación Multiagente y Arquitectura BDI}{4}{}%
+\contentsline {section}{\numberline {2.5}Sistemas Expertos basados en Lógica Difusa}{5}{}%
+\contentsline {chapter}{\numberline {3}Diseño e Implementación}{6}{}%
+\contentsline {chapter}{\numberline {4}Resultados y Experimentos}{7}{}%
+\contentsline {chapter}{\numberline {5}Análisis}{8}{}%
+\contentsline {chapter}{\numberline {6}Conclusiones}{9}{}%
